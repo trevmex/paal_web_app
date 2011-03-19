@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  task_id: 1
+  subtask_id: 2
+  position: 1
+
+two:
+  task_id: 1
+  subtask_id: 3
+  position: 2

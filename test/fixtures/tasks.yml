@@ -1,0 +1,9 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  title: Test Walkthrough
+  task_type: walkthrough
+
+two:
+  title: Test Step
+  task_type: step
