@@ -4,7 +4,7 @@ class Component < ActiveRecord::Base
   has_many :task_components, :dependent => :destroy
   has_many :tasks, :through => :task_components
 
-  if PaalWebApp.env.production?
+  if Rails.env.production?
     has_attached_file :media,
       :storage => :s3,
       :bucket => "paal_web_api",
