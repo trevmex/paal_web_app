@@ -1,2 +1,8 @@
 <h1>Edit Task</h1>
 <%= render "form" %>
+<% if @task.can_have_subtasks? %>
+  <h2>Update Subtasks</h2>
+  <%= render "update_subtask_form" %>
+  <h2>Add Subtasks</h2>
+  <%= render "add_subtask_form" %>
+<% end %>

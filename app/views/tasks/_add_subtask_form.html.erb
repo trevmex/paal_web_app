@@ -1,0 +1,29 @@
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Task Type</th>
+      <th>Position</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @tasks.each do |task| %>
+      <% unless @task == task %>
+        <% unless @subtasks.include?(task) %>
+          <tr>
+            <td><%= task.title %></td>
+            <td><%= task.task_type.capitalize %></td>
+            <td>
+              <%= form_for @task.subtasks.new, :url => task_subtasks_url(@task) do |f| %>
+                <%= f.number_field :position %>
+                <%= f.hidden_field :task_id %>
+                <%= f.hidden_field :subtask_id, :value => task.id %>
+                <%= f.submit "Add #{task.task_type.capitalize}" %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>

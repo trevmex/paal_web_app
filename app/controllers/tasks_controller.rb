@@ -2,6 +2,7 @@ class TasksController < ApplicationController
   before_filter :find_task, :only => [:edit, :update, :show, :destroy]
   before_filter :find_all_tasks, :only => [:new, :edit, :index]
   before_filter :collect_task_types, :only => [:new, :edit]
+  before_filter :collect_subtasks, :only => [:edit]
 
   respond_to :html, :xml, :json
 
@@ -53,6 +54,12 @@ class TasksController < ApplicationController
   def collect_task_types
     @task_types = Task.task_types.collect do |task_type|
       [task_type.capitalize, task_type]
+    end
+  end
+
+  def collect_subtasks
+    @subtasks = @task.subtasks.collect do |subtask|
+      subtask.task
     end
   end
 end

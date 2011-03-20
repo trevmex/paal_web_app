@@ -1,5 +1,7 @@
 class Subtask < ActiveRecord::Base
   belongs_to :task
+  has_one :task, :primary_key => :subtask_id, :foreign_key => :id
+  acts_as_list :scope => :task
 
   validates_presence_of :task_id, :subtask_id
   validates_uniqueness_of :position, :scope => "task_id"

@@ -1,0 +1,27 @@
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Task Type</th>
+      <th>Position</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @task.subtasks.each do |subtask| %>
+      <tr>
+        <td><%= subtask.task.title %></td>
+        <td><%= subtask.task.task_type.capitalize %></td>
+        <td>
+          <%= form_for subtask, :url => task_subtask_url(@task, subtask) do |f| %>
+            <%= f.number_field :position %>
+            <%= f.hidden_field :task_id %>
+            <%= f.hidden_field :subtask_id %>
+            <%= f.submit "Update #{subtask.task.task_type.capitalize}" %>
+          <% end %>
+        </td>
+        <td><%= link_to "Remove #{subtask.task.task_type.capitalize}", task_subtask_url(@task, subtask), :method => :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

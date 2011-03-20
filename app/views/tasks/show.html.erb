@@ -1,2 +1,7 @@
-<h1>Tasks#show</h1>
-<p>Find me in app/views/tasks/show.html.erb</p>
+<h1>Task</h1>
+<p>Title: <%= @task.title %></p>
+<p>Task Type: <%= @task.task_type.capitalize %></p>
+<p><%= link_to "Show", task_url(@task) %></p>
+<p><%= link_to "Edit", edit_task_url(@task) %></p>
+<p><%= link_to "Delete", task_url(@task), :method => :delete, :confirm => "Are you sure you want to delete #{@task.title}?" %></p>
+<p><%= link_to "All tasks", tasks_url %></p>
