@@ -8,11 +8,16 @@ class Task < ActiveRecord::Base
   validates_presence_of :title
   validate :valid_task_type?
 
-  @@task_types = %w(walkthrough step choice schedule check)
-  @@task_types_that_can_have_subtasks = %w(walkthrough choice schedule)
+  @@task_types = %w(walkthrough step)
+  @@task_types_that_can_have_subtasks = %w(walkthrough)
+  @@task_types_that_can_have_components = %w(step)
 
-  def can_have_subtasks?
-    @@task_types_that_can_have_subtasks.include?(task_type)
+  self.reflect_on_all_associations(:has_many).each do |association|
+    self.class_eval %Q{
+      def can_have_#{association.name.to_s}?
+        @@task_types_that_can_have_#{association.name.to_s}.include?(task_type)
+      end
+    }
   end
 
   private
