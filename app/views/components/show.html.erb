@@ -1,2 +1,7 @@
-<h1>Components#show</h1>
-<p>Find me in app/views/components/show.html.erb</p>
+<h1>Component</h1>
+<p>Content: <%= @component.content %></p>
+<p>Component Type: <%= @component.component_type.capitalize %></p>
+<p><%= link_to "Show", component_url(@component) %></p>
+<p><%= link_to "Edit", edit_component_url(@component) %></p>
+<p><%= link_to "Delete", component_url(@component), :method => :delete, :confirm => "Are you sure you want to delete #{@component.content}?" %></p>
+<p><%= link_to "All components", components_url %></p>

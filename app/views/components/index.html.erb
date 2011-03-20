@@ -1,2 +1,28 @@
-<h1>Components#index</h1>
-<p>Find me in app/views/components/index.html.erb</p>
+<h1>Components</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Content</th>
+      <th>Component Type</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @components.each do |component| %>
+      <tr>
+        <td><%= component.content %></td>
+        <td><%= component.component_type.capitalize %></td>
+        <td><%= link_to "Show", component_url(component) %></td>
+        <td><%= link_to "Edit", edit_component_url(component) %></td>
+        <td><%= link_to "Delete", component_url(component), :method => :delete, :confirm => "Are you sure you want to delete #{component.content}?" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<ul>
+  <% Component.component_types.each do |component_type| %>
+    <li><%= link_to "New #{component_type.capitalize}", new_component_url(:component => {:component_type => component_type}) %></li>
+  <% end %>
+</ul>

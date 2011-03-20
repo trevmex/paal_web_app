@@ -1,0 +1,7 @@
+<%= form_for @component do |f| %>
+  <%= f.label :content %>
+  <%= f.text_field :content %>
+  <%= f.label :component_type %>
+  <%= f.select :component_type, @component_types %>
+  <%= f.submit %>
+<% end %>
