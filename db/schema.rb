@@ -10,13 +10,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110319175454) do
+ActiveRecord::Schema.define(:version => 20110320203830) do
 
   create_table "components", :force => true do |t|
-    t.text     "content"
+    t.text     "description"
     t.string   "component_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "media_file_name"
+    t.string   "media_content_type"
+    t.integer  "media_file_size"
+    t.datetime "media_updated_at"
   end
 
   create_table "subtasks", :force => true do |t|

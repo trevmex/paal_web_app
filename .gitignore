@@ -1,3 +1,4 @@
+public/system/
 *.swp
 .bundle
 db/*.sqlite3

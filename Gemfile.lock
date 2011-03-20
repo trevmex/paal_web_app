@@ -30,6 +30,10 @@ GEM
     activesupport (3.0.5)
     acts_as_list (0.1.2)
     arel (2.0.9)
+    aws-s3 (0.6.2)
+      builder
+      mime-types
+      xml-simple
     builder (2.1.2)
     erubis (2.6.6)
       abstract (>= 1.0.0)
@@ -40,6 +44,9 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.16)
+    paperclip (2.3.8)
+      activerecord
+      activesupport
     polyglot (0.3.1)
     rack (1.2.2)
     rack-mount (0.6.13)
@@ -65,11 +72,14 @@ GEM
     treetop (1.4.9)
       polyglot (>= 0.3.1)
     tzinfo (0.3.25)
+    xml-simple (1.0.14)
 
 PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
   acts_as_list
+  aws-s3
+  paperclip
   rails (= 3.0.5)
   sqlite3

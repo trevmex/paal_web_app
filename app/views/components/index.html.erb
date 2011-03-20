@@ -2,7 +2,8 @@
 <table>
   <thead>
     <tr>
-      <th>Content</th>
+      <th>Media</th>
+      <th>Description</th>
       <th>Component Type</th>
       <th></th>
       <th></th>
@@ -12,11 +13,12 @@
   <tbody>
     <% @components.each do |component| %>
       <tr>
-        <td><%= component.content %></td>
+        <td><%= render :partial => "media", :locals => {:component => component} %></td>
+        <td><%= component.description %></td>
         <td><%= component.component_type.capitalize %></td>
         <td><%= link_to "Show", component_url(component) %></td>
         <td><%= link_to "Edit", edit_component_url(component) %></td>
-        <td><%= link_to "Delete", component_url(component), :method => :delete, :confirm => "Are you sure you want to delete #{component.content}?" %></td>
+        <td><%= link_to "Delete", component_url(component), :method => :delete, :confirm => "Are you sure you want to delete #{component.description}?" %></td>
       </tr>
     <% end %>
   </tbody>

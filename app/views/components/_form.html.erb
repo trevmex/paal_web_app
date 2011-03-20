@@ -1,7 +1,20 @@
-<%= form_for @component do |f| %>
-  <%= f.label :content %>
-  <%= f.text_field :content %>
+<%= form_for @component, :html => {:multipart => true} do |f| %>
+  <% if @component.errors.any? %>
+    <div id="errorExplanation">
+      <h2><%= pluralize(@component.errors.count, "error") %> prohibited this component from being saved:</h2>
+      <ul>
+        <% @component.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <%= f.label :media %>
+  <%= f.file_field :media %>
+  <%= f.label :description %>
+  <%= f.text_area :description %>
   <%= f.label :component_type %>
-  <%= f.select :component_type, @component_types %>
+  <%= f.select :component_type, Component.component_types.collect {|component_type| [component_type.capitalize, component_type]} %>
   <%= f.submit %>
 <% end %>

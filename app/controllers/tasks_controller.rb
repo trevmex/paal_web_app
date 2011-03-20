@@ -1,19 +1,22 @@
 class TasksController < ApplicationController
   before_filter :find_task, :only => [:edit, :update, :show, :destroy]
   before_filter :find_all_tasks, :only => [:new, :edit, :index]
-  before_filter :collect_task_types, :only => [:new, :edit]
-  before_filter :collect_subtasks, :only => [:edit]
+  before_filter :build_new_task, :only => [:new, :create]
 
   respond_to :html, :xml, :json
 
   # GET /tasks/new
   def new
-    respond_with(@task = Task.new(params[:task]))
+    respond_with(@task)
   end
 
   # POST /tasks
   def create
-    respond_with(@task = Task.create(params[:task]), :location => tasks_url)
+    if @task.save
+      respond_with(@task, :location => tasks_url)
+    else
+      render :action => "new"
+    end
   end
 
   # GET /tasks/1/edit
@@ -23,7 +26,11 @@ class TasksController < ApplicationController
 
   # PUT /tasks/1
   def update
-    respond_with(@task.update_attributes(params[:task]), :location => tasks_url)
+    if @task.update_attributes(params[:task])
+      respond_with(@task, :location => tasks_url)
+    else
+      render :action => "edit"
+    end
   end
 
   # GET /tasks/1
@@ -51,15 +58,7 @@ class TasksController < ApplicationController
     @tasks = Task.all
   end
 
-  def collect_task_types
-    @task_types = Task.task_types.collect do |task_type|
-      [task_type.capitalize, task_type]
-    end
-  end
-
-  def collect_subtasks
-    @subtasks = @task.subtasks.collect do |subtask|
-      subtask.task
-    end
+  def build_new_task
+    @task = Task.new(params[:task])
   end
 end

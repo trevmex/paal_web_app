@@ -1,18 +1,22 @@
 class ComponentsController < ApplicationController
   before_filter :find_component, :only => [:edit, :update, :show, :destroy]
   before_filter :find_all_components, :only => [:index]
-  before_filter :collect_component_types, :only => [:new, :edit]
+  before_filter :build_new_component, :only => [:new, :create]
 
   respond_to :html, :xml, :json
 
   # GET /components/new
   def new
-    respond_with(@component = Component.new(params[:component]))
+    respond_with(@component)
   end
 
   # POST /components
   def create
-    respond_with(@component = Component.create(params[:component]), :location => components_url)
+    if @component.save
+      respond_with(@component, :location => components_url)
+    else
+      render :action => "new"
+    end
   end
 
   # GET /components/1/edit
@@ -22,7 +26,11 @@ class ComponentsController < ApplicationController
 
   # PUT /components/1
   def update
-    respond_with(@component.update_attributes(params[:component]), :location => components_url)
+    if @component.update_attributes(params[:component])
+      respond_with(@component, :location => components_url)
+    else
+      render :action => "edit"
+    end
   end
 
   # GET /components/1
@@ -50,9 +58,7 @@ class ComponentsController < ApplicationController
     @components = Component.all
   end
 
-  def collect_component_types
-    @component_types = Component.component_types.collect do |component_type|
-      [component_type.capitalize, component_type]
-    end
+  def build_new_component
+    @component = Component.new(params[:component])   
   end
 end

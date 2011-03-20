@@ -1,0 +1,5 @@
+<% if component.component_type == "audio" %>
+  <%= tag "embed", {:src => component.media.url, :autostart => "false", :loop => "false"} %>
+<% else # component.component_type == "image" %>
+  <%= image_tag component.media.url %>
+<% end %>

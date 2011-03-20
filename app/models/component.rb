@@ -4,8 +4,21 @@ class Component < ActiveRecord::Base
   has_many :task_components, :dependent => :destroy
   has_many :tasks, :through => :task_components
 
-  validates_presence_of :content
+  if PaalWebApp.env.production?
+    has_attached_file :media,
+      :storage => :s3,
+      :bucket => "paal_web_api",
+      :s3_credentials => {
+        :access_key_id => ENV["S3_KEY"],
+        :secret_access_key => ENV["S3_SECRET"]
+      }
+  else
+    has_attached_file :media
+  end
+
   validate :valid_component_type?
+  validates_attachment_presence :media
+  validates_attachment_content_type :media, :content_type => ["audio/mpeg", "audio/mp3", "image/jpeg", "image/png", "image/gif"]
 
   @@component_types = %w(audio image)
 
@@ -13,7 +26,7 @@ class Component < ActiveRecord::Base
 
   def valid_component_type?
     unless @@component_types.include?(component_type)
-      errors.add(:component_type, "Invalid component type. Please use one of the following ${@@component_types}")
+      errors.add(:component_type, "Invalid component type. Please use one of the following #{@@component_types.to_s}")
     end
   end
 end

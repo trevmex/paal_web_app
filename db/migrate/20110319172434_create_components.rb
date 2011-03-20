@@ -1,7 +1,7 @@
 class CreateComponents < ActiveRecord::Migration
   def self.up
     create_table :components do |t|
-      t.text :content
+      t.text :description
       t.string :component_type
 
       t.timestamps

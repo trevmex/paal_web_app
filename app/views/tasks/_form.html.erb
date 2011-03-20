@@ -1,7 +1,18 @@
 <%= form_for @task do |f| %>
+  <% if @task.errors.any? %>
+    <div id="errorExplanation">
+      <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
+      <ul>
+        <% @task.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+ 
   <%= f.label :title %>
   <%= f.text_field :title %>
   <%= f.label :task_type %>
-  <%= f.select :task_type, @task_types %>
+  <%= f.select :task_type, Task.task_types.collect {|task_type| [task_type.capitalize, task_type]} %>
   <%= f.submit %>
 <% end %>
