@@ -7,7 +7,7 @@ class Component < ActiveRecord::Base
   if Rails.env.production?
     has_attached_file :media,
       :storage => :s3,
-      :bucket => "paal_web_api",
+      :bucket => "paal_web_app",
       :s3_credentials => {
         :access_key_id => ENV["S3_KEY"],
         :secret_access_key => ENV["S3_SECRET"]
