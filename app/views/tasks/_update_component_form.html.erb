@@ -1,0 +1,20 @@
+<table>
+  <thead>
+    <tr>
+      <th>Media</th>
+      <th>Description</th>
+      <th>Component Type</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @task.components.each do |component| %>
+      <tr>
+        <td><%= render :partial => "components/media", :locals => {:component => component} %></td>
+        <td><%= component.description %></td>
+        <td><%= component.component_type.capitalize %></td>
+        <td><%= link_to "Remove #{component.component_type.capitalize}", task_task_component_url(@task, TaskComponent.where(:task_id => @task.id, :component_id => component.id).to_a[0].id), :method => :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

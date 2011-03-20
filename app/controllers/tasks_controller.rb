@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
   before_filter :find_task, :only => [:edit, :update, :show, :destroy]
   before_filter :find_all_tasks, :only => [:new, :edit, :index]
+  before_filter :find_all_components, :only => [:edit]
   before_filter :build_new_task, :only => [:new, :create]
 
   respond_to :html, :xml, :json
@@ -56,6 +57,10 @@ class TasksController < ApplicationController
 
   def find_all_tasks
     @tasks = Task.all
+  end
+
+  def find_all_components
+    @components = Component.all
   end
 
   def build_new_task

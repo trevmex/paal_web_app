@@ -1,0 +1,30 @@
+<table>
+  <thead>
+    <tr>
+      <th>Media</th>
+      <th>Description</th>
+      <th>Component Type</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% unless @components.blank? %>
+      <% @components.each do |component|%>
+        <% unless @task.components.include?(component) %>
+          <tr>
+            <td><%= render :partial => "components/media", :locals => {:component => component} %></td>
+            <td><%= component.description %></td>
+            <td><%= component.component_type.capitalize %></td>
+            <td>
+              <%= form_for @task.task_components.new(:component => component), :url => task_task_components_url(@task) do |f| %>
+                <%= f.hidden_field :task_id %>
+                <%= f.hidden_field :component_id %>
+                <%= f.submit "Add #{component.component_type.capitalize}" %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
