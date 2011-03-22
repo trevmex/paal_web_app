@@ -1,0 +1,20 @@
+<task>
+  <title><%= task.title -%></title>
+  <task_type><%= task.task_type -%></task_type>
+
+  <subtasks>
+    <% task.subtasks.each do |subtask| -%>
+      <%= render :partial => "task", :locals => {:task => subtask.task} -%>
+    <% end -%>
+  </subtasks>
+  
+  <components>
+    <% task.components.each do |component| -%>
+      <component>
+        <description><%= component.description -%></description>
+        <component_type><%= component.component_type -%></component_type>
+        <media><%= component.media.url -%></media>
+      </component>
+    <% end -%>
+  </components>
+</task> 
