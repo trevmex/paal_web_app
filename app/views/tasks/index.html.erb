@@ -1,9 +1,11 @@
-<h1>Tasks</h1>
+<h1><%= @task_type.capitalize.pluralize %></h1>
 <table>
   <thead>
     <tr>
       <th>Title</th>
-      <th>Task Type</th>
+      <% if @task_type == "task" %>
+        <th>Task Type</th>
+      <% end %>
       <th></th>
       <th></th>
       <th></th>
@@ -13,7 +15,9 @@
     <% @tasks.each do |task| %>
       <tr>
         <td><%= task.title %></td>
-        <td><%= task.task_type.capitalize %></td>
+        <% if @task_type == "task" %>
+          <td><%= task.task_type.capitalize %></td>
+        <% end %>
         <td><%= link_to "Show", task_url(task) %></td>
         <td><%= link_to "Edit", edit_task_url(task) %></td>
         <td><%= link_to "Delete", task_url(task), :method => :delete, :confirm => "Are you sure you want to delete #{task.title}?" %></td>

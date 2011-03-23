@@ -41,6 +41,11 @@ class TasksController < ApplicationController
 
   # GET /tasks
   def index
+    @task_type = if params[:task_type]
+                   params[:task_type]
+                 else
+                   "tasks"
+                 end
     respond_with(@tasks)
   end
 
@@ -56,7 +61,7 @@ class TasksController < ApplicationController
   end
 
   def find_all_tasks
-    @tasks = Task.all
+    @tasks = Task.all(params[:task_type])
   end
 
   def find_all_components

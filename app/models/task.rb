@@ -20,6 +20,14 @@ class Task < ActiveRecord::Base
     }
   end
 
+  def self.all(task_type = nil)
+    if task_type.blank?
+      super
+    else
+      self.find_all_by_task_type(task_type.singularize)
+    end
+  end
+
   private
 
   def valid_task_type?

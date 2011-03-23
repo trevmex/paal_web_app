@@ -12,7 +12,13 @@
  
   <%= f.label :title %>
   <%= f.text_field :title %>
-  <%= f.label :task_type %>
-  <%= f.select :task_type, Task.task_types.collect {|task_type| [task_type.capitalize, task_type]} %>
+  
+  <% if params[:task].present? && params[:task][:task_type].present? %>
+    <%= f.hidden_field :task_type %>
+  <% else %>
+    <%= f.label :task_type %>
+    <%= f.select :task_type, Task.task_types.collect {|task_type| [task_type.capitalize, task_type]} %>
+  <% end %>
+
   <%= f.submit %>
 <% end %>
