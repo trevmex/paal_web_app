@@ -1,26 +1,32 @@
 {
+  "id": "<%= task.id -%>",
   "title": "<%= task.title -%>",
-  "task_type": "<%= task.task_type -%>",
-  
-  "subtasks": [
+  "task_type": "<%= task.task_type -%>"
+
+  <% if task.subtasks.length > 0 -%>
+  ,"subtasks": [
     <% task.subtasks.each do |subtask| -%>
       <%= render :partial => "task", :locals => {:task => subtask.task} -%>
       <% if subtask != task.subtasks.last -%>
         ,
       <% end -%>
     <% end -%>
-  ],
-  
-  "components": [
-    <% task.components.each do |component| -%>
-      {
-        "description": "<%= component.description -%>",
-        "component_type": "<%= component.component_type -%>",
-        "media": "<%= component.media.url -%>"
-      }
-      <% if component != task.components.last -%>
-        ,
-      <% end -%>
-    <% end -%>
   ]
+  <% end -%>
+
+  <% if task.components.length > 0 -%>
+    ,"components": [
+      <% task.components.each do |component| -%>
+        {
+          "id": "<%= component.id -%>",
+          "description": "<%= component.description -%>",
+          "component_type": "<%= component.component_type -%>",
+          "media": "<%= component.media.url -%>"
+        }
+        <% if component != task.components.last -%>
+          ,
+        <% end -%>
+      <% end -%>
+    ]
+  <% end -%>
 }
