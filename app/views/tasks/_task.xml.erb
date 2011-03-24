@@ -1,20 +1,22 @@
-<task>
+<task id="<%= task.id -%>" type="<%= task.task_type -%>">
   <title><%= task.title -%></title>
-  <task_type><%= task.task_type -%></task_type>
 
-  <subtasks>
-    <% task.subtasks.each do |subtask| -%>
-      <%= render :partial => "task", :locals => {:task => subtask.task} -%>
-    <% end -%>
-  </subtasks>
-  
-  <components>
-    <% task.components.each do |component| -%>
-      <component>
-        <description><%= component.description -%></description>
-        <component_type><%= component.component_type -%></component_type>
-        <media><%= component.media.url -%></media>
-      </component>
-    <% end -%>
-  </components>
+  <% if task.subtasks.length > 0 -%>
+    <subtasks>
+      <% task.subtasks.each do |subtask| -%>
+        <%= render :partial => "task", :locals => {:task => subtask.task} -%>
+      <% end -%>
+    </subtasks>
+  <% end -%>
+
+  <% if task.components.length > 0 -%>
+    <components>
+      <% task.components.each do |component| -%>
+        <component id="<%= component.id -%>" type="<%= component.component_type -%>">
+          <description><%= component.description -%></description>
+          <media><%= component.media.url -%></media>
+        </component>
+      <% end -%>
+    </components>
+  <% end -%>
 </task> 
