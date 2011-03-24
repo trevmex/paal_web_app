@@ -1,1 +1,1 @@
-<%= render(:partial => "task", :locals => {:task => @task}).gsub(/( |(".*?"))/, "\\2").gsub(/\n/, "") -%>
+<%= render(:partial => "task", :locals => {:task => @task}).gsub(/\n|\t|\r/, " ").gsub(/( |(".*?"))/, "\\2") -%>
