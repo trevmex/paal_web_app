@@ -31,7 +31,10 @@ module PaalWebApp
     # config.i18n.default_locale = :de
 
     # JavaScript files you want as :defaults (application.js is always included).
-    # config.action_view.javascript_expansions[:defaults] = %w(jquery rails)
+    config.action_view.javascript_expansions[:defaults] = %w(jquery jquery-ui rails)
+
+    # Stylesheet files you want as :all
+    config.action_view.stylesheet_expansions[:defaults] = %w(oocss/all redmond/jquery-ui screen)
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"

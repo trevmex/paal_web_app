@@ -1,14 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>PaalWebApp</title>
-  <%= stylesheet_link_tag :all %>
+  <title>PAAL Web App</title>
+  <%= stylesheet_link_tag :defaults %>
   <%= javascript_include_tag :defaults %>
   <%= csrf_meta_tag %>
 </head>
 <body>
-
-<%= yield %>
-
+  <div class="page">
+    <div class="head">
+      <h1>PAAL Web App</h1>
+	  </div>
+	  <div class="body">
+		  <div class="leftCol">
+		  </div>
+		  <div class="rightCol">
+		  </div>
+		  <div class="main">
+        <%= yield %>
+		  </div>
+	  </div>
+	  <div class="foot">
+      <p>&copy; 2011 GTAB, Inc.</p>
+	  </div>
+  </div>
 </body>
 </html>
