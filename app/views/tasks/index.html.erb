@@ -1,30 +1,33 @@
 <h1><%= @task_type.capitalize.pluralize %></h1>
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <% if @task_type == "task" %>
-        <th>Task Type</th>
-      <% end %>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @tasks.each do |task| %>
+<div class="data paalTable">
+  <table class="txtL">
+    <thead>
       <tr>
-        <td><%= task.title %></td>
+        <th class="<%= @title_width %>" scope="col">Title</th>
         <% if @task_type == "task" %>
-          <td><%= task.task_type.capitalize %></td>
+          <th class="<%= @title_width %>" scope="col">Task Type</th>
         <% end %>
-        <td><%= link_to "Show", task_url(task) %></td>
-        <td><%= link_to "Edit", edit_task_url(task) %></td>
-        <td><%= link_to "Delete", task_url(task), :method => :delete, :confirm => "Are you sure you want to delete #{task.title}?" %></td>
+        <th class="oneTenth" scope="col"></th>
+        <th class="oneTenth" scope="col"></th>
+        <th class="oneTenth" scope="col"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @tasks.each do |task| %>
+        <tr>
+          <td class="<%= @title_width %>"><%= task.title %></td>
+          <% if @task_type == "task" %>
+            <td class="<%= @title_width %>"><%= task.task_type.capitalize %></td>
+          <% end %>
+          <td class="txtC oneTenth"><%= link_to "Show", task_url(task) %></td>
+          <td class="txtC oneTenth"><%= link_to "Edit", edit_task_url(task) %></td>
+          <td class="txtC oneTenth"><%= link_to "Delete", task_url(task), :method => :delete, :confirm => "Are you sure you want to delete #{task.title}?" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>  
+  
 <ul>
   <% Task.task_types.each do |task_type| %>
     <li><%= link_to "New #{task_type.capitalize}", new_task_url(:task => {:task_type => task_type}) %></li>

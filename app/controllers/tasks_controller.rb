@@ -41,11 +41,13 @@ class TasksController < ApplicationController
 
   # GET /tasks
   def index
-    @task_type = if params[:task_type]
-                   params[:task_type]
-                 else
-                   "tasks"
-                 end
+    if params[:task_type]
+      @task_type = params[:task_type]
+      @title_width = "fullTitleWidth"
+    else
+      @task_type = "task"
+      @title_width = "halfTitleWidth"
+    end
     respond_with(@tasks)
   end
 

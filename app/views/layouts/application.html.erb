@@ -1,28 +1,33 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>PAAL Web App</title>
-  <%= stylesheet_link_tag :defaults %>
-  <%= javascript_include_tag :defaults %>
-  <%= csrf_meta_tag %>
-</head>
-<body>
-  <div class="page">
-    <div class="head">
-      <h1>PAAL Web App</h1>
-	  </div>
-	  <div class="body">
-		  <div class="leftCol">
-		  </div>
-		  <div class="rightCol">
-		  </div>
-		  <div class="main">
-        <%= yield %>
-		  </div>
-	  </div>
-	  <div class="foot">
-      <p>&copy; 2011 GTAB, Inc.</p>
-	  </div>
-  </div>
-</body>
+  <head>
+    <title>PAAL Web App</title>
+    <%= stylesheet_link_merged :base %>
+    <%= javascript_include_merged :base %>
+    <%= csrf_meta_tag %>
+    <%= yield :html_head %>
+  </head>
+  <body>
+    <div class="page">
+      <div class="head">
+        <h1>PAAL Web App</h1>
+        <%= yield :head %>
+      </div>
+      <div class="body">
+        <div class="leftCol">
+          <%= yield :leftCol %>
+        </div>
+        <div class="rightCol">
+          <%= yield :rightCol %>
+        </div>
+        <div class="main">
+          <%= yield %>
+        </div>
+      </div>
+      <div class="foot">
+        <%= yield :foot %>
+        <p>&copy; 2011 GTAB, Inc.</p>
+      </div>
+    </div>
+  </body>
 </html>

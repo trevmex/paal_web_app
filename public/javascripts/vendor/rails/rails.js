@@ -23,7 +23,7 @@
 	// Submits "remote" forms and links with ajax
 	function handleRemote(element) {
 		var method, url, data,
-			dataType = element.data('type') || ($.ajaxSettings &amp;&amp; $.ajaxSettings.dataType);
+			dataType = element.data('type') || ($.ajaxSettings && $.ajaxSettings.dataType);
 
 	if (fire(element, 'ajax:before')) {
 		if (element.is('form')) {
@@ -73,7 +73,7 @@
 			form = $('&lt;form method="post" action="' + href + '"&gt;&lt;/form&gt;'),
 			metadata_input = '&lt;input name="_method" value="' + method + '" type="hidden" /&gt;';
 
-		if (csrf_param !== undefined &amp;&amp; csrf_token !== undefined) {
+		if (csrf_param !== undefined && csrf_token !== undefined) {
 			metadata_input += '&lt;input name="' + csrf_param + '" value="' + csrf_token + '" type="hidden" /&gt;';
 		}
 
@@ -100,7 +100,7 @@
 
 	function allowAction(element) {
 		var message = element.data('confirm');
-		return !message || (fire(element, 'confirm') &amp;&amp; confirm(message));
+		return !message || (fire(element, 'confirm') && confirm(message));
 	}
 
 	function requiredValuesMissing(form) {

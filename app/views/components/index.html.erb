@@ -1,28 +1,31 @@
 <h1>Components</h1>
-<table>
-  <thead>
-    <tr>
-      <th>Media</th>
-      <th>Description</th>
-      <th>Component Type</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @components.each do |component| %>
+<div class="data paalTable">
+  <table class="txtL">
+    <thead>
       <tr>
-        <td><%= render :partial => "media", :locals => {:component => component} %></td>
-        <td><%= component.description %></td>
-        <td><%= component.component_type.capitalize %></td>
-        <td><%= link_to "Show", component_url(component) %></td>
-        <td><%= link_to "Edit", edit_component_url(component) %></td>
-        <td><%= link_to "Delete", component_url(component), :method => :delete, :confirm => "Are you sure you want to delete #{component.description}?" %></td>
+        <th scope="col">Media</th>
+        <th scope="col">Description</th>
+        <th scope="col">Component Type</th>
+        <th class="oneTenth" scope="col"></th>
+        <th class="oneTenth" scope="col"></th>
+        <th class="oneTenth" scope="col"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @components.each do |component| %>
+        <tr>
+          <td><%= render :partial => "media", :locals => {:component => component} %></td>
+          <td><%= component.description %></td>
+          <td><%= component.component_type.capitalize %></td>
+          <td class="txtC oneTenth"><%= link_to "Show", component_url(component) %></td>
+          <td class="txtC oneTenth"><%= link_to "Edit", edit_component_url(component) %></td>
+          <td class="txtC oneTenth"><%= link_to "Delete", component_url(component), :method => :delete, :confirm => "Are you sure you want to delete #{component.description}?" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
 <ul>
   <% Component.component_types.each do |component_type| %>
     <li><%= link_to "New #{component_type.capitalize}", new_component_url(:component => {:component_type => component_type}) %></li>

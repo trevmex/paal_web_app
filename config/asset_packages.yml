@@ -1,0 +1,18 @@
+---
+javascripts:
+- base:
+  - vendor/jquery/jquery.min
+  - vendor/jquery-ui/jquery-ui.min
+  - vendor/thickbox/thickbox-compressed
+  - vendor/uni-form/uni-form-validation.jquery.min
+  - vendor/rails/rails
+  - application
+stylesheets:
+- base:
+  - vendor/oocss/all
+  - vendor/jquery-ui/redmond/jquery-ui
+  - vendor/thickbox/thickbox
+  - vendor/uni-form/uni-form
+  - vendor/uni-form/default.uni-form
+  - paal/paalTable
+  - screen
