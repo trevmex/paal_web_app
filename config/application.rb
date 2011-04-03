@@ -31,24 +31,24 @@ module PaalWebApp
     # config.i18n.default_locale = :de
 
     # JavaScript files you want as :defaults (application.js is always included).
-    #config.action_view.javascript_expansions[:defaults] = %w(
-    #  vendor/jquery/jquery.min
-    #  vendor/jquery-ui/jquery-ui.min
-    #  vendor/thickbox/thickbox-compressed
-    #  vendor/uni-form/uni-form-validation.jquery.min
-    #  vendor/rails/rails
-    #)
+    config.action_view.javascript_expansions[:defaults] = %w(
+      vendor/jquery/jquery.min
+      vendor/jquery-ui/jquery-ui.min
+      vendor/thickbox/thickbox-compressed
+      vendor/uni-form/uni-form-validation.jquery.min
+      vendor/rails/rails
+    )
 
     # Stylesheet files you want as :all
-    #config.action_view.stylesheet_expansions[:defaults] = %w(
-    #  vendor/oocss/all
-    #  vendor/jquery-ui/redmond/jquery-ui
-    #  vendor/thickbox/thickbox
-    #  vendor/uni-form/uni-form
-    #  vendor/uni-form/default.uni-form
-    #  paal/paalTable
-    #  screen
-    #)
+    config.action_view.stylesheet_expansions[:defaults] = %w(
+      vendor/oocss/all
+      vendor/jquery-ui/redmond/jquery-ui
+      vendor/thickbox/thickbox
+      vendor/uni-form/uni-form
+      vendor/uni-form/default.uni-form
+      paal/paalTable
+      screen
+    )
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
