@@ -45,7 +45,7 @@ module PaalWebApp
       vendor/jquery-ui/redmond/jquery-ui
       vendor/thickbox/thickbox
       vendor/uni-form/uni-form
-      vendor/uni-form/default.uni-form
+      vendor/uni-form/blue.uni-form
       paal/paalTable
       screen
     )

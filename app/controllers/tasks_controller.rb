@@ -4,7 +4,7 @@ class TasksController < ApplicationController
   before_filter :find_all_components, :only => [:edit]
   before_filter :build_new_task, :only => [:new, :create]
 
-  respond_to :html, :xml, :json
+  respond_to :html, :xml, :json, :lightbox
 
   # GET /tasks/new
   def new

@@ -1,20 +1,22 @@
-<table>
-  <thead>
-    <tr>
-      <th>Media</th>
-      <th>Description</th>
-      <th>Component Type</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @task.components.each do |component| %>
+<div class="data paalTable">
+  <table class="txtL">
+    <thead>
       <tr>
-        <td><%= render :partial => "components/media", :locals => {:component => component} %></td>
-        <td><%= component.description %></td>
-        <td><%= component.component_type.capitalize %></td>
-        <td><%= link_to "Remove #{component.component_type.capitalize}", task_task_component_url(@task, TaskComponent.where(:task_id => @task.id, :component_id => component.id).to_a[0].id), :method => :delete %></td>
+        <th scope="col">Media</th>
+        <th scope="col">Description</th>
+        <th scope="col">Component Type</th>
+        <th scope="col"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @task.components.each do |component| %>
+        <tr>
+          <td><%= render :partial => "components/media", :locals => {:component => component} %></td>
+          <td><%= component.description %></td>
+          <td><%= component.component_type.capitalize %></td>
+          <td class="txtC"><%= button_to "Remove #{component.component_type.capitalize}", task_task_component_url(@task, TaskComponent.where(:task_id => @task.id, :component_id => component.id).to_a[0].id), :method => :delete %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

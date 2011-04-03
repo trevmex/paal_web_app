@@ -32,3 +32,7 @@
 .paalTable .halfTitleWidth {
   .width: 35%;
 }
+
+.paalTable input[type="number"] {
+  width: 4em;
+}
