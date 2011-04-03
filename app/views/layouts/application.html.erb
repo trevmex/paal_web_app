@@ -2,8 +2,8 @@
 <html>
   <head>
     <title>PAAL Web App</title>
-    <%= stylesheet_link_merged :base %>
-    <%= javascript_include_merged :base %>
+    <%= (stylesheet_link_merged :base).html_safe %>
+    <%= (javascript_include_merged :base).html_safe %>
     <%= csrf_meta_tag %>
     <%= yield :html_head %>
   </head>
