@@ -3,9 +3,20 @@
 
 en:
   task: "Task"
+  flash:
+    tasks:
+      create:
+        notice: "%{task_type} was successfully created"
+      update:
+        notice: "%{task_type} was successfully updated"
+      destroy:
+        notice: "%{task_type} was successfully destroyed"
+        alert: "%{task_type} could not be destroyed"
   helpers:
     submit:
       task:
         create: "Create %{task_type}"
         update: "Update %{task_type}"
         submit: "Submit %{task_type}"
+        add: "Add %{task_type}"
+        remove: "Remove %{task_type}"

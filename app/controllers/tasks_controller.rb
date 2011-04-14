@@ -14,7 +14,8 @@ class TasksController < ApplicationController
   # POST /tasks
   def create
     if @task.save
-      respond_with(@task, :location => tasks_url)
+      flash[:notice] = I18n.t(:"flash.tasks.update.notice", :task_type => @task.task_type.capitalize)
+      respond_with(@task, :location => edit_task_url(@task))
     else
       render :action => "new"
     end
@@ -28,7 +29,8 @@ class TasksController < ApplicationController
   # PUT /tasks/1
   def update
     if @task.update_attributes(params[:task])
-      respond_with(@task, :location => tasks_url)
+      flash[:notice] = I18n.t(:"flash.tasks.update.notice", :task_type => @task.task_type.capitalize)
+      respond_with(@task, :location => edit_task_url(@task))
     else
       render :action => "edit"
     end

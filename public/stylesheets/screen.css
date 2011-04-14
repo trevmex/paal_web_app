@@ -9,3 +9,15 @@ h1, h2, h3, h4, h5, h6 {
 img, object, video, embed {
   max-width: 100%
 }
+
+.notice {
+  color: green;
+}
+
+.alert {
+  color: red;
+}
+
+.flash {
+  margin-left: 1em;
+}
