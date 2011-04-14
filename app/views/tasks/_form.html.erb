@@ -16,7 +16,7 @@
       <%= f.text_field :title %>
     </div>
   
-    <% if params[:task].present? && params[:task][:task_type].present? %>
+    <% if @task.task_type.present? %>
       <%= f.hidden_field :task_type %>
     <% else %>
       <div class="ctrlHolder">
@@ -26,7 +26,7 @@
     <% end %>
 
     <div class="buttonHolder">
-      <%= f.submit :class => "primaryAction" %>
+      <%= f.submit submit_default_value(@task), :class => "primaryAction" %>
     </div>
   </fieldset>
 <% end %>

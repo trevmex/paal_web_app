@@ -1,5 +1,5 @@
 <% if component.component_type == "audio" %>
-  <%= tag "embed", {:src => component.media.url, :autostart => "false", :loop => "false"} %>
+  <%= link_to 'Play audio', component.media.url %>
 <% else # component.component_type == "image" %>
   <%= image_tag component.media.url %>
 <% end %>
