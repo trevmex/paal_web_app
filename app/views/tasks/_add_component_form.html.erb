@@ -1,15 +1,16 @@
-<div class="data paalTable">
-  <table class="txtL">
-    <thead>
-      <tr>
-        <th scope="col">Media</th>
-        <th scope="col">Description</th>
-        <th scope="col">Component Type</th>
-        <th scope="col"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% unless @components.blank? %>
+<% unless @components.blank? %>
+  <h2>Add Component</h2>
+  <div class="data paalTable">
+    <table class="txtL">
+      <thead>
+        <tr>
+          <th scope="col">Media</th>
+          <th scope="col">Description</th>
+          <th scope="col">Component Type</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
         <% @components.each do |component|%>
           <% unless @task.components.include?(component) %>
             <tr>
@@ -26,7 +27,7 @@
             </tr>
           <% end %>
         <% end %>
-      <% end %>
-    </tbody>
-  </table>
-</div>
+      </tbody>
+    </table>
+  </div>
+<% end %>

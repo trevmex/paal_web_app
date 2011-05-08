@@ -1,31 +1,35 @@
-<div class="data paalTable">
-  <table class="txtL">
-    <thead>
-      <tr>
-        <th scope="col">Title</th>
-        <th scope="col">Task Type</th>
-        <th scope="col">Position</th>
-        <th scope="col"></th>
-        <th scope="col"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @task.subtasks.each do |subtask| %>
-        <%= form_for subtask, :url => task_subtask_url(@task, subtask) do |f| %>
-          <tr>
-            <td><%= subtask.task.title %></td>
-            <td><%= subtask.task.task_type.capitalize %></td>
-            <td>
-              <%= f.number_field :position %>
-              <%= f.hidden_field :task_id %>
-              <%= f.hidden_field :subtask_id %>
-            </td>
-            <td class="txtC">
-              <%= f.submit I18n.t(:"helpers.submit.task.add", :task_type => subtask.task.task_type.capitalize) %>
-            </td>
-            <td class="txtC"><%= button_to I18n.t(:"helpers.submit.task.remove", :task_type => subtask.task.task_type.capitalize), task_subtask_url(@task, subtask), :method => :delete %></td>
-          </tr>
+<% if @task.subtasks.length > 0 %>
+  <h2>Update Subtasks</h2>
+  <div class="data paalTable">
+    <table class="txtL">
+      <thead>
+        <tr>
+          <th scope="col">Title</th>
+          <th scope="col">Task Type</th>
+          <th scope="col">Position</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @task.subtasks.each do |subtask| %>
+          <%= form_for subtask, :url => task_subtask_url(@task, subtask) do |f| %>
+            <tr>
+              <td><%= subtask.task.title %></td>
+              <td><%= subtask.task.task_type.capitalize %></td>
+              <td>
+                <%= f.number_field :position %>
+                <%= f.hidden_field :task_id %>
+                <%= f.hidden_field :subtask_id %>
+              </td>
+              <td class="txtC">
+                <%= f.submit I18n.t(:"helpers.submit.task.add", :task_type => subtask.task.task_type.capitalize) %>
+              </td>
+              <td class="txtC"><%= button_to I18n.t(:"helpers.submit.task.remove", :task_type => subtask.task.task_type.capitalize), task_subtask_url(@task, subtask), :method => :delete %></td>
+            </tr>
+          <% end %>
         <% end %>
-      <% end %>
-    </tbody>
-  </table>
+      </tbody>
+    </table>
+  </div>
+<% end %>

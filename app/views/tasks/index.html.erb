@@ -20,10 +20,6 @@
       <% end %>
     </tbody>
   </table>
-</div>  
-  
-<ul>
-  <% Task.task_types.each do |task_type| %>
-    <li><%= link_to "New #{task_type.capitalize}", new_task_url(:format => "lightbox", :task => {:task_type => task_type}, :height => "175", :width => "300"), :class => "thickbox" %></li>
-  <% end %>
-</ul>
+</div>
+
+<%= render "new_task_links" %>

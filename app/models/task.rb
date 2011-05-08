@@ -28,6 +28,22 @@ class Task < ActiveRecord::Base
     end
   end
 
+  def possible_subtasks
+    possible_subtasks = Array.new
+
+    self.class.all.each do |task|
+      unless task == self
+        unless task.task_type == self.task_type # TODO replace with actual subtask rules
+          unless self.subtasks.collect {|subtask| subtask.task}.include?(task)
+            possible_subtasks.push(task)
+          end
+        end
+      end
+    end
+
+    possible_subtasks
+  end
+
   private
 
   def valid_task_type?

@@ -2,15 +2,13 @@
 <%= render "form" %>
 
 <% if @task.can_have_components? %>
-  <h2>Update Components</h2>
   <%= render "update_component_form" %>
-  <h2>Add Component</h2>
   <%= render "add_component_form" %>
 <% end %>
 
 <% if @task.can_have_subtasks? %>
-  <h2>Update Subtasks</h2>
   <%= render "update_subtask_form" %>
-  <h2>Add Subtasks</h2>
   <%= render "add_subtask_form" %>
 <% end %>
+
+<%= render "new_task_links" %>

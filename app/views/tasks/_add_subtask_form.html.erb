@@ -1,38 +1,33 @@
-<div class="data paalTable">
-  <table class="txtL">
-    <thead>
-      <tr>
-        <th scope="col">Title</th>
-        <th scope="col">Task Type</th>
-        <th scope="col">Position</th>
-        <th scope="col"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% unless @tasks.blank? %>
-        <% @tasks.each do |task|%>
-          <% unless @task == task %>
-            <% unless @task.task_type == task.task_type %>
-              <% unless @task.subtasks.collect {|subtask| subtask.task}.include?(task) %>
-                <%= form_for @task.subtasks.new, :url => task_subtasks_url(@task) do |f| %>
-                  <tr>
-                    <td><%= task.title %></td>
-                    <td><%= task.task_type.capitalize %></td>
-                    <td>
-                      <%= f.number_field :position %>
-                      <%= f.hidden_field :task_id %>
-                      <%= f.hidden_field :subtask_id, :value => task.id %>
-                    </td>
-                    <td class="txtC">
-                      <%= f.submit I18n.t(:"helpers.submit.task.add", :task_type => task.task_type.capitalize) %>
-                    </td>
-                  </tr>
-                <% end %>
-              <% end %>
-            <% end %>
+<% unless @task.possible_subtasks.blank? %>
+  <h2>Add Subtasks</h2>
+  <div class="data paalTable">
+    <table class="txtL">
+      <thead>
+        <tr>
+          <th scope="col">Title</th>
+          <th scope="col">Task Type</th>
+          <th scope="col">Position</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @task.possible_subtasks.each do |task|%>
+          <%= form_for @task.subtasks.new, :url => task_subtasks_url(@task) do |f| %>
+            <tr>
+              <td><%= task.title %></td>
+              <td><%= task.task_type.capitalize %></td>
+              <td>
+                <%= f.number_field :position %>
+                <%= f.hidden_field :task_id %>
+                <%= f.hidden_field :subtask_id, :value => task.id %>
+              </td>
+              <td class="txtC">
+                <%= f.submit I18n.t(:"helpers.submit.task.add", :task_type => task.task_type.capitalize) %>
+              </td>
+            </tr>
           <% end %>
         <% end %>
-      <% end %>
-    </tbody>
-  </table>
-</div>
+      </tbody>
+    </table>
+  </div>
+<% end %>
